@@ -8,7 +8,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ['id', 'cpf', 'name', 'born_date']
 
-    def validate_cpf(self, value):
+    def validate_cpf(self, value: str) -> str:
         if not isinstance(value, str):
             raise ValidationError
         value = value.replace('.', '').replace('-', '')
