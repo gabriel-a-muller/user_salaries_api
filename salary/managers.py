@@ -1,11 +1,18 @@
 from typing import Any
 from typing import TypeVar as _T
 from django.db import models
+from django.core import exceptions
 
 
 class SalaryManager(models.Manager):
     def create(self, **obj_data: Any) -> _T:
-        return super().create(**obj_data)
+        if obj_data['salary'] < obj_data['discounts']:
+            raise exceptions.ValidationError(
+                'Discount bigger than Salary!',
+                code='invalid_discount'
+            )
+        else:
+            return super().create(**obj_data)
 
     def update(self, **obj_data: Any) -> int:
         return super().update(**obj_data)

@@ -1,4 +1,5 @@
 import datetime
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from salary.models import Salary
 from users.models import User
@@ -108,3 +109,10 @@ class SalaryTestCase(TestCase):
         self.assertFalse(User.objects.filter(id=self.user1.id).exists())
         self.assertFalse(Salary.objects.filter(id=salary1.id).exists())
         self.assertFalse(Salary.objects.filter(id=salary2.id).exists())
+
+    def test_check_discount_value(self):
+        self.assertRaises(ValidationError, Salary.objects.create, 
+            salary=10,
+            discounts=20,
+            date=datetime.date.today(),
+            user=self.user1)
