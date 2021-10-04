@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path("",views.ListSalaryAPIView.as_view(),name="salary_list"),
+    path("<int:pk>/",views.GetSalaryAPIView.as_view(),name="salary_get"),
     path("create/", views.CreateSalaryAPIView.as_view(),name="salary_create"),
     path("update/<int:pk>/",views.UpdateSalaryAPIView.as_view(),name="update_salary"),
     path("delete/<int:pk>/",views.DeleteSalaryAPIView.as_view(),name="delete_salary"),

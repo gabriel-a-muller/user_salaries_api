@@ -11,6 +11,14 @@ class ListUserAPIView(generics.ListAPIView):
     serializer_class = UserSerializer
 
 
+class GetUserAPIView(generics.RetrieveAPIView):
+    """
+    This endpoint will get a specific user by passings its id
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
 class CreateUserAPIView(generics.CreateAPIView):
     """
     This endpoint allows for creation of a user

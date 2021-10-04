@@ -12,6 +12,14 @@ class ListSalaryAPIView(generics.ListAPIView):
     serializer_class = serializers.SalarySerializer
 
 
+class GetSalaryAPIView(generics.RetrieveAPIView):
+    """
+    This endpoint will get a specific salary by passings its id
+    """
+    queryset = Salary.objects.all()
+    serializer_class = serializers.SalarySerializer
+
+
 class CreateSalaryAPIView(generics.CreateAPIView):
     """
     This endpoint allows for creation of a salary
