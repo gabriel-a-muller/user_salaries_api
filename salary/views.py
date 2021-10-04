@@ -34,7 +34,7 @@ class UpdateSalaryAPIView(generics.UpdateAPIView):
     passing in the id of the salary to update
     """
     queryset = Salary.objects.all()
-    serializer_class = serializers.SalarySerializer
+    serializer_class = serializers.SalarySerializerEdit
 
 
 class DeleteSalaryAPIView(generics.DestroyAPIView):
