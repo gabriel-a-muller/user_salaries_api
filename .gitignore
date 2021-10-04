@@ -1,3 +1,6 @@
+# Database Config
+salary_manager/database_config.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
