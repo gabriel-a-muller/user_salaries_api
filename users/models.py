@@ -13,3 +13,7 @@ class User(models.Model):
     name = CharField(max_length=155, verbose_name='Name')
     born_date = DateField()
     objects = UserManager()
+
+    def __str__(self):
+        value = self.name + ' - ' + self.cpf
+        return value

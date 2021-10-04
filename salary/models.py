@@ -13,5 +13,5 @@ class Salary(models.Model):
     salary = FloatField()
     discounts = FloatField()
     date = DateField()
-    user = ForeignKey(User, on_delete=CASCADE)
+    user = ForeignKey(User, on_delete=CASCADE, related_name='salaries')
     objects = SalaryManager()
