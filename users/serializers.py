@@ -14,4 +14,6 @@ class UserSerializer(serializers.ModelSerializer):
         if not isinstance(value, str):
             raise serializers.ValidationError
         value = value.replace('.', '').replace('-', '')
+        if User.objects.filter(cpf=value).exists():
+            raise serializers.ValidationError("Duplicate entry for cpf: " + value)
         return value
