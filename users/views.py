@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, serializers
 from users.serializers import UserSerializer
 from users.models import User
 
@@ -34,6 +34,12 @@ class UpdateUserAPIView(generics.UpdateAPIView):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def patch(self, request, *args, **kwargs):
+        if User.objects.filter(cpf=request.data['cpf']).exclude(id=kwargs['pk']).exists():
+            raise serializers.ValidationError(
+                "Duplicate entry for cpf: " + request.data['cpf'])
+        return super().patch(request, *args, **kwargs)
 
 
 class DeleteUserAPIView(generics.DestroyAPIView):
